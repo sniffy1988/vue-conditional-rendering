@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
+    <div>{{windowWidth}}</div>
     <c-render :render="isRender">
       <HelloWorld msg="Welcome to Your Vue.js App"/>
     </c-render>
+    <c-render :render="isNeedRender">Hides on screens smaller than 1000px</c-render>
+    <c-render :render="!isNeedRender">Shows on screens smaller than 1000px</c-render>
     <button @click="toggleRender">Show/hide</button>
   </div>
 </template>
@@ -18,10 +21,23 @@ export default {
   },
   data() {
     return {
-      isRender: true
+      isRender: false,
+      windowWidth: window.innerWidth
     };
   },
+  mounted() {
+    window.addEventListener("resize", this.resizeSensor);
+  },
+  beforeDestroy() {},
+  computed: {
+    isNeedRender() {
+      return this.windowWidth > 1000;
+    }
+  },
   methods: {
+    resizeSensor() {
+      this.windowWidth = window.innerWidth;
+    },
     toggleRender() {
       this.isRender = !this.isRender;
     }
