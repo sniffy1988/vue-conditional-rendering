@@ -1,7 +1,6 @@
 /* eslint-disable */
 let CRender = {
   name: "c-render",
-  abstract: true,
   props: {
     render: {
       type: [Function, Boolean],
