@@ -8,10 +8,6 @@ let CRender = {
       default: true
     }
   },
-  // DOM properties
-  domProps: {
-    innerHTML: "baz"
-  },
   render() {
     let isRender;
     if (typeof isRender === "function") {
